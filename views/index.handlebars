@@ -1,3 +1,46 @@
-<h1>Hello, world!</h1>
+<h1>FORE!some</h1>
 
-<h3>Welcome to Foresome, the place to find pairings for your golf game</h3>
+<p>Welcome to FORE!some, the best place to find golfers who match your skill level.  We all love the game of golf and know that it's more fun when you can share your moments, both good and bad, with someone else.  Create a profile, give us some basic information about your skill level, and we'll start matching up up with people so you can get out and play!</p>
+
+<hr>
+
+<h4>Not already a member? Sign up!</h4>
+<form method="POST" action="/signup" class="signup-form">
+	<fieldset class="signup-field">
+		<legend>Sign up</legend>
+
+		<label for="signup-first-name">First name:</label>
+		<input type="text" name="signup-first-name" placeholder="Fred">
+		
+		<label for="signup-last-name">Last name:</label>
+		<input type="text" name="signup-last-name" placeholder="Couples"><br>
+		
+		<label for="signup-email">Email:</label>
+		<input type="email" name="signup-email" placeholder="fredcouples@pga.com"><br>
+
+		<label for="signup-password">Password:</label>
+		<input type="password" name="signup-password"><br>
+
+		<label for="signup-password-confirm">Re-enter password:</label>
+		<input type="password" name="signup-password-confirm"><br>
+
+		<button type="submit" id="signup-submit">Sign Up!</button>
+	</fieldset>
+</form>
+
+<hr>
+
+<h4>Already a member?  Log in!</h4>
+<form method="POST" action="/signin" class="signin-form">
+	<fieldset class="signin-field">
+		<legend>Sign in</legend>
+
+		<label for="signin-email">Email address:</label>
+		<input type="email" name="signin-email" placeholder="davidduval@pga.com"><br>
+
+		<label for="signin-password">Password:</label>
+		<input type="password" name="signin-password">
+
+		<button type="submit" id="signin-submit">Log In!</button>
+	</fieldset>
+</form>

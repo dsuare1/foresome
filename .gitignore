@@ -38,3 +38,6 @@ jspm_packages
 
 # DS Store file on Mac
 .DS_Store
+
+# Balsamic mockup
+foresome-mockup.bmpr

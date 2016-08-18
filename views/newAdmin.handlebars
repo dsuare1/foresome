@@ -1,0 +1,82 @@
+<h1>Welcome to FORE!some</h1>
+
+<hr>
+<p>{{this.first_name}}</p>
+<p>{{this.email}}</p>
+
+<hr>
+<h4>Do you know your handicap?</h4>
+<button id="handicap-yes">Yes</button>
+<button id="handicap-no">No</button>
+
+<hr>
+<div class="enter-handicap">
+	<form method="POST" action="/handicap-submit">
+		<p>Ok great!  Enter it below:</p>
+		<input type="number" id="handicap"><br>
+		<button type="submit" id="handicap-submit">Submit</button>
+	</form>
+</div>
+
+<hr>
+<div class="enter-scores">
+	<p>No problem!  Enter at least your last 5 rounds, and up to your last 15.  <br>(the more you enter, the more accurately we can calculate your handicap)</p>
+	<hr>
+	<form method="POST" action="/rounds-submit">
+		<div class="first-five-rounds">
+			<label for="round1">Round 1:</label>
+			<input type="number" id="round1">
+
+			<label for="round2">Round 2:</label>
+			<input type="number" id="round2">
+
+			<label for="round3">Round 3:</label>
+			<input type="number" id="round3">
+
+			<label for="round4">Round 4:</label>
+			<input type="number" id="round4">
+
+			<label for="round5">Round 5:</label>
+			<input type="number" id="round5">
+		</div>
+
+		<div class="second-five-rounds">
+			<label for="round6">Round 6:</label>
+			<input type="number" id="round6">
+
+			<label for="round7">Round 7:</label>
+			<input type="number" id="round7">
+
+			<label for="round8">Round 8:</label>
+			<input type="number" id="round8">
+
+			<label for="round9">Round 9:</label>
+			<input type="number" id="round9">
+
+			<label for="round10">Round 10:</label>
+			<input type="number" id="round10">
+		</div>
+
+		<div class="third-five-rounds">
+			<label for="round11">Round 11:</label>
+			<input type="number" id="round11">
+
+			<label for="round12">Round 12:</label>
+			<input type="number" id="round12">
+
+			<label for="round13">Round 13:</label>
+			<input type="number" id="round13">
+
+			<label for="round14">Round 14:</label>
+			<input type="number" id="round14">
+
+			<label for="round15">Round 15:</label>
+			<input type="number" id="round15">
+		</div>
+		<button type="submit" id="rounds-submit">Calculate my handicap</button>
+	</form>
+</div>
+
+<hr>
+<h4>Great!  So we've got your handicap at ##.  Click on the button below to see your best matches!</h4>
+<button id="redirect-to-admin">Show me my matches!</button> 

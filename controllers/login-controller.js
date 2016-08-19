@@ -1,4 +1,5 @@
 var multer = require('multer');
+var upload = multer({ dest: 'public/assets/uploads/' });
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
 
@@ -36,23 +37,8 @@ module.exports = function(router, models) {
         }
     });
 
-    router.post('/signup',
-
-        [
-            multer({
-                dest: './uploads/',
-                onError: function(err, next) {
-                    console.log('error', err);
-                    next(err);
-                }
-            }),
-            function(req, res) {
-                res.status(204).end();
-            }
-        ],
-
-        function(req, res) {
-            console.log('req file: ' + req.file);
+    router.post('/signup', upload.any(), function(req, res) {
+            console.log('profile pic path: ' + req.files[0].path);
             sessionUser = req.body.signup_email;
             models.users.findOne({ where: { email: sessionUser } }).then(function(duplicateUser) {
                 if (duplicateUser) {
@@ -69,6 +55,7 @@ module.exports = function(router, models) {
                             first_name: req.body.signup_first_name,
                             last_name: req.body.signup_last_name,
                             email: req.body.signup_email,
+                            profile_pic: req.files[0].path,
                             password: hashedPassword
                         }).then(function(result) {
                             console.log(JSON.stringify(result, null, 2));

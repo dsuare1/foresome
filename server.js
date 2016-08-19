@@ -2,7 +2,22 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var exphbs = require('express-handlebars');
 var mysql = require('mysql');
+var multer = require('multer');
 var session = require('express-session');
+
+// /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+// file uploads with multer
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+ 
+var upload = multer({ storage: storage });
+// /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
 var app = express();
 
@@ -23,6 +38,7 @@ app.use(bodyParser.urlencoded({
 // set up sessions
 app.use(session({ secret: 'asdfjkl1234', resave: false, saveUnitialized: true}));
 
+// set up the view engine to be Handlebars
 app.engine('handlebars', exphbs({
 	defaultLayout: 'main'
 }));

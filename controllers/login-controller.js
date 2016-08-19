@@ -1,3 +1,4 @@
+var multer = require('multer');
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
 
@@ -35,33 +36,49 @@ module.exports = function(router, models) {
         }
     });
 
-    router.post('/signup', function(req, res) {
-        sessionUser = req.body.signup_email;
-        models.users.findOne({ where: { email: sessionUser } }).then(function(duplicateUser) {
-            if (duplicateUser) {
-                console.log('email already taken');
-                res.redirect('/');
-            } else {
-                var hashedPassword = bcrypt.hash(req.body.signup_password, saltRounds, function(err, hash) {
-                    if (err) {
-                        throw err;
-                    } else {
-                        var hashedPassword = hash;
-                    };
-                    models.users.create({
-                        first_name: req.body.signup_first_name,
-                        last_name: req.body.signup_last_name,
-                        email: req.body.signup_email,
-                        password: hashedPassword
-                    }).then(function(result) {
-                        console.log(JSON.stringify(result, null, 2));
-                        sessionUser = result.email;
-                        res.redirect('/new_admin');
-                    });
-                })
+    router.post('/signup',
+
+        [
+            multer({
+                dest: './uploads/',
+                onError: function(err, next) {
+                    console.log('error', err);
+                    next(err);
+                }
+            }),
+            function(req, res) {
+                res.status(204).end();
             }
-        })
-    });
+        ],
+
+        function(req, res) {
+            console.log('req file: ' + req.file);
+            sessionUser = req.body.signup_email;
+            models.users.findOne({ where: { email: sessionUser } }).then(function(duplicateUser) {
+                if (duplicateUser) {
+                    console.log('email already taken');
+                    res.redirect('/');
+                } else {
+                    var hashedPassword = bcrypt.hash(req.body.signup_password, saltRounds, function(err, hash) {
+                        if (err) {
+                            throw err;
+                        } else {
+                            var hashedPassword = hash;
+                        };
+                        models.users.create({
+                            first_name: req.body.signup_first_name,
+                            last_name: req.body.signup_last_name,
+                            email: req.body.signup_email,
+                            password: hashedPassword
+                        }).then(function(result) {
+                            console.log(JSON.stringify(result, null, 2));
+                            sessionUser = result.email;
+                            res.redirect('/new_admin');
+                        });
+                    })
+                }
+            })
+        });
 
     router.post('/signin', function(req, res) {
         console.log('signin button hit');

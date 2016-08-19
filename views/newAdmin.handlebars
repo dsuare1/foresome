@@ -11,9 +11,10 @@
 
 <hr>
 <div class="enter-handicap">
-	<form method="POST" action="/handicap-submit">
-		<p>Ok great!  Enter it below:</p>
-		<input type="number" id="handicap"><br>
+	<p>Ok great!  Enter it below:</p>
+	<form method="POST" action="/handicapSubmit">
+		<label for="handicap">Handicap</label>
+		<input type="text" id="handicap" name="handicap"><br>
 		<button type="submit" id="handicap-submit">Submit</button>
 	</form>
 </div>
@@ -25,19 +26,19 @@
 	<form method="POST" action="/rounds-submit">
 		<div class="first-five-rounds">
 			<label for="round1">Round 1:</label>
-			<input type="number" id="round1">
+			<input type="number" id="round1" name="round1">
 
 			<label for="round2">Round 2:</label>
-			<input type="number" id="round2">
+			<input type="number" id="round2" name="round2">
 
 			<label for="round3">Round 3:</label>
-			<input type="number" id="round3">
+			<input type="number" id="round3" name="round3">
 
 			<label for="round4">Round 4:</label>
-			<input type="number" id="round4">
+			<input type="number" id="round4" name="round4">
 
 			<label for="round5">Round 5:</label>
-			<input type="number" id="round5">
+			<input type="number" id="round5" name="round5">
 			
 			<a href="#" id="show-second-five">
 				<p>Show five more...</p>
@@ -47,19 +48,19 @@
 
 		<div class="hidden second-five-rounds">
 			<label for="round6">Round 6:</label>
-			<input type="number" id="round6">
+			<input type="number" id="round6" name="round6">
 
 			<label for="round7">Round 7:</label>
-			<input type="number" id="round7">
+			<input type="number" id="round7" name="round7">
 
 			<label for="round8">Round 8:</label>
-			<input type="number" id="round8">
+			<input type="number" id="round8" name="round8">
 
 			<label for="round9">Round 9:</label>
-			<input type="number" id="round9">
+			<input type="number" id="round9" name="round9">
 
 			<label for="round10">Round 10:</label>
-			<input type="number" id="round10">
+			<input type="number" id="round10" name="round10">
 
 			<a href="#" id="show-third-five">
 				<p>Show five more...</p>
@@ -72,19 +73,19 @@
 
 		<div class="hidden third-five-rounds">
 			<label for="round11">Round 11:</label>
-			<input type="number" id="round11">
+			<input type="number" id="round11" name="round11">
 
 			<label for="round12">Round 12:</label>
-			<input type="number" id="round12">
+			<input type="number" id="round12" name="round12">
 
 			<label for="round13">Round 13:</label>
-			<input type="number" id="round13">
+			<input type="number" id="round13" name="round13">
 
 			<label for="round14">Round 14:</label>
-			<input type="number" id="round14">
+			<input type="number" id="round14" name="round14">
 
 			<label for="round15">Round 15:</label>
-			<input type="number" id="round15">
+			<input type="number" id="round15" name="round15">
 
 			<a href="#" id="hide-third-five">
 				<p>Hide</p>
@@ -97,5 +98,3 @@
 <hr>
 <h4>Great!  So we've got your handicap at ##.  Click on the button below to see your best matches!</h4>
 <button id="redirect-to-admin">Show me my matches!</button>
-
-<script src="/assets/js/app.js"></script>

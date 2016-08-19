@@ -26,5 +26,9 @@
     "multer": "^1.2.0",
     "mysql": "^2.11.1",
     "sequelize": "^3.24.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2"
   }
 }

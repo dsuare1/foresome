@@ -1,49 +1,55 @@
-<h1>FORE!some</h1>
+<header style='text-align:center'>
+	<h1><span class='bold'>FORE!</span>SOME</h1>
+</header>
 
-<p>Welcome to FORE!some, the best place to find golfers who match your skill level.  We all love the game of golf and know that it's more fun when you can share your moments, both good and bad, with someone else.  Create a profile, give us some basic information about your skill level, and we'll start matching up up with people so you can get out and play!</p>
-
-<hr>
-
-<h4>Not already a member? Sign up!</h4>
-<form method="POST" enctype="multipart/form-data" action="/signup" class="signup_form">
-	<fieldset class="signup_field">
-		<legend>Sign up</legend>
-
-		<label for="signup_first_name">First name:</label>
-		<input type="text" name="signup_first_name" placeholder="Fred">
-		
-		<label for="signup_last_name">Last name:</label>
-		<input type="text" name="signup_last_name" placeholder="Couples"><br>
-		
-		<label for="signup_email">Email:</label>
-		<input type="email" name="signup_email" placeholder="fredcouples@pga.com"><br>
-
-		<label for="profile_pic">Profile picture:</label>
-		<input type="file" name="profile_pic"><br>
-
-		<label for="signup_password">Password:</label>
-		<input type="password" name="signup_password"><br>
-
-		<label for="signup_password_confirm">Re-enter password:</label>
-		<input type="password" name="signup_password_confirm"><br>
-
-		<button type="submit" id="signup_submit">Sign Up!</button>
-	</fieldset>
-</form>
+<p class = 'welcomeMessage'>Welcome to FORE!some, the best place to find golfers who match your skill level.  We all love the game of golf and know that it's more fun when you can share your moments, both good and bad, with someone else.  Create a profile, give us some basic information about your skill level, and we'll start matching up up with people so you can get out and play!</p>
 
 <hr>
 
-<h4>Already a member?  Log in!</h4>
-<form method="POST" action="/signin" class="signin-form">
-	<fieldset class="signin_field">
-		<legend>Sign in</legend>
+<div class = 'container'>
+	<div class = 'col1'>
+		<h4>Not already a member? Sign up!</h4>
+		<form method="POST" enctype="multipart/form-data" action="/signup" class="signup_form">
+			<fieldset class="signup_field">
+				{{!-- <legend>Sign up</legend> --}}
 
-		<label for="signin_email">Email address:</label>
-		<input type="email" name="signin_email" placeholder="davidduval@pga.com"><br>
+				<label for="signup_first_name">First name:</label>
+				<input type="text" name="signup_first_name" placeholder="Fred"><br>
+				
+				<label for="signup_last_name">Last name:</label>
+				<input type="text" name="signup_last_name" placeholder="Couples"><br>
+				
+				<label for="signup_email">Email:</label>
+				<input type="email" name="signup_email" placeholder="fredcouples@pga.com"><br>
 
-		<label for="signin_password">Password:</label>
-		<input type="password" name="signin_password">
+				<label for="profile_pic">Profile picture:</label>
+				<input type="file" name="profile_pic"><br>
 
-		<button type="submit" id="signin_submit">Log In!</button>
-	</fieldset>
-</form>
+				<label for="signup_password">Password:</label>
+				<input type="password" name="signup_password"><br>
+
+				<label for="signup_password_confirm">Re-enter password:</label>
+				<input type="password" name="signup_password_confirm"><br>
+
+				<button type="submit" id="signup_submit">Sign Up!</button>
+			</fieldset>
+		</form>
+	</div>
+
+	<div class = 'col2'>
+		<h4>Already a member?  Log in!</h4>
+		<form method="POST" action="/signin" class="signin-form" id = 'signinRight'>
+			<fieldset class="signin_field">
+				{{!-- <legend>Sign in</legend> --}}
+
+				<label for="signin_email">Email address:</label>
+				<input type="email" name="signin_email" placeholder="davidduval@pga.com"><br>
+
+				<label for="signin_password">Password:</label>
+				<input type="password" name="signin_password">
+
+				<button type="submit" id="signin_submit">Log In!</button>
+			</fieldset>
+		</form>
+	</div>
+</div>

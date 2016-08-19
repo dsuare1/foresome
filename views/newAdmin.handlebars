@@ -38,9 +38,14 @@
 
 			<label for="round5">Round 5:</label>
 			<input type="number" id="round5">
+			
+			<a href="#" id="show-second-five">
+				<p>Show five more...</p>
+			</a>
+
 		</div>
 
-		<div class="second-five-rounds">
+		<div class="hidden second-five-rounds">
 			<label for="round6">Round 6:</label>
 			<input type="number" id="round6">
 
@@ -55,9 +60,17 @@
 
 			<label for="round10">Round 10:</label>
 			<input type="number" id="round10">
+
+			<a href="#" id="show-third-five">
+				<p>Show five more...</p>
+			</a>
+
+			<a href="#" id="hide-second-five">
+				<p>Hide</p>
+			</a>
 		</div>
 
-		<div class="third-five-rounds">
+		<div class="hidden third-five-rounds">
 			<label for="round11">Round 11:</label>
 			<input type="number" id="round11">
 
@@ -72,6 +85,10 @@
 
 			<label for="round15">Round 15:</label>
 			<input type="number" id="round15">
+
+			<a href="#" id="hide-third-five">
+				<p>Hide</p>
+			</a>
 		</div>
 		<button type="submit" id="rounds-submit">Calculate my handicap</button>
 	</form>
@@ -79,4 +96,6 @@
 
 <hr>
 <h4>Great!  So we've got your handicap at ##.  Click on the button below to see your best matches!</h4>
-<button id="redirect-to-admin">Show me my matches!</button> 
+<button id="redirect-to-admin">Show me my matches!</button>
+
+<script src="/assets/js/app.js"></script>

@@ -5,3 +5,10 @@ body {
 	line-height: 1.5;
 	padding: 4em 1em;
 }
+
+/* /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/- */
+/* newAdmin.handlebars styles */
+/* /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/- */
+.hidden {
+	display: none;
+}

@@ -12,9 +12,9 @@
 <hr>
 <div class="enter-handicap">
 	<p>Ok great!  Enter it below:</p>
-	<form method="POST" action="/handicapSubmit">
+	<form method="POST" action="/handicapSubmit?_method=PUT">
 		<label for="handicap">Handicap</label>
-		<input type="text" id="handicap" name="handicap"><br>
+		<input type="number" id="handicap" name="handicap"><br>
 		<button type="submit" id="handicap-submit">Submit</button>
 	</form>
 </div>

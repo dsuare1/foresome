@@ -6,16 +6,14 @@ var saltRounds = 10;
 module.exports = function(router, models) {
     console.log('Controller loaded --> Login controller (login-controller.js)');
 
-    var sessionUser;
-
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
     // routes for logging in and signing up
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
     router.post('/signup', upload.any(), function(req, res) {
         console.log('profile pic path: ' + req.files[0].path);
-        sessionUser = req.body.signup_email;
-        models.users.findOne({ where: { email: sessionUser } }).then(function(duplicateUser) {
+        var signupEmail = req.body.signup_email;
+        models.users.findOne({ where: { email: signupEmail } }).then(function(duplicateUser) {
             if (duplicateUser) {
                 console.log('email already taken');
                 res.redirect('/');
@@ -33,9 +31,7 @@ module.exports = function(router, models) {
                         profile_pic: req.files[0].path,
                         password: hashedPassword
                     }).then(function(result) {
-                        console.log(JSON.stringify(result, null, 2));
-                        sessionUser = result.email;
-                        console.log('session user: ' + sessionUser)
+                        req.session.user = result;
                         res.redirect('/new_admin');
                     });
                 })
@@ -45,11 +41,11 @@ module.exports = function(router, models) {
 
     router.post('/signin', function(req, res) {
         console.log('signin button hit');
-        sessionUser = req.body.signin_email;
+        activeUser = req.body.signin_email;
         console.log('sessionUser: ' + sessionUser);
         models.users.findOne({ where: { email: sessionUser } }).then(function(loginUser) {
             if (loginUser !== null) {
-                req.session.user = loginUser.email;
+                req.session.user = loginUser;
                 bcrypt.compare(req.body.signin_password, loginUser.password, function(err, result) {
                     if (result === true) {
                         console.log('login successful');
@@ -71,35 +67,36 @@ module.exports = function(router, models) {
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
     router.get('/new_admin', function(req, res) {
-        if (!sessionUser) {
+        var user = req.session.user;
+        if (!user) {
             return res.status(401).send();
         } else {
-            models.users.findOne({ where: { email: sessionUser } })
-                .then(function(sessionUser1) {
-                    var hbsObj = {
-                        first_name: sessionUser1.first_name,
-                        email: sessionUser1.email
-                    }
-                    res.render('newAdmin', hbsObj);
-                })
+            var hbsObj = {
+                first_name: user.first_name,
+                email: user.email
+            }
+            res.render('newAdmin', hbsObj);
         }
     });
 
-    router.post('/handicapSubmit', function(req, res) {
-        console.log('handicapSubmit button hit');
-        console.log(req.body);
-        console.log('handicap: ' + req.body.handicap);
-        // if (!sessionUser) {
-        //     console.log('no session user');
-        //     return res.status(401).send();
-        // } else {
-        //     models.users.findOne({ where: { email: sessionUser } })
-        //     .then(function() {
-        //         models.users.updateAttributes({
-        //             handicap: req.body.handicap
-        //         })
-        //     })
-        // }
+    router.put('/handicapSubmit', function(req, res) {
+        var user = req.session.user;
+        if (!user) {
+            console.log('no session user');
+            return res.status(401).send();
+        } else {
+            models.users.find({
+                where: {
+                    email: user.email
+                }
+            }).then(function(foundUser) {
+                foundUser.handicap = req.body.handicap;
+                foundUser.save()
+                .then(function() {
+                    res.send('handicap saved');
+                });
+            })
+        }
     });
 
 
@@ -108,13 +105,14 @@ module.exports = function(router, models) {
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
     router.get('/admin', function(req, res) {
-        if (!sessionUser) {
+        var user = req.session.user;
+        if (!user) {
             return res.status(401).send();
         } else {
-            models.users.findOne({ where: { email: sessionUser } }).then(function(sessionUser1) {
+            models.users.findOne({ where: { email: user.email } }).then(function(sessionUser1) {
                 var hbsObj = {
-                    first_name: sessionUser1.first_name,
-                    email: sessionUser1.email
+                    first_name: user.first_name,
+                    email: user.email
                 }
                 res.render('admin', hbsObj);
             })

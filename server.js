@@ -2,8 +2,8 @@ var bodyParser = require('body-parser');
 var express = require('express');
 var exphbs = require('express-handlebars');
 var mysql = require('mysql');
-// var multer = require('multer');
 var session = require('express-session');
+var methodOverride = require('method-override');
 
 var app = express();
 
@@ -23,6 +23,9 @@ app.use(bodyParser.urlencoded({
 
 // set up sessions
 app.use(session({ secret: 'asdfjkl1234', resave: false, saveUnitialized: true}));
+
+// set up Express to use method override
+app.use(methodOverride('_method'));
 
 // set up the view engine to be Handlebars
 app.engine('handlebars', exphbs({

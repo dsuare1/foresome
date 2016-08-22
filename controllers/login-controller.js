@@ -93,8 +93,29 @@ module.exports = function(router, models) {
                 foundUser.handicap = req.body.handicap;
                 foundUser.save()
                 .then(function() {
-                    res.send('handicap saved');
+                    return res.status(200).send();
                 });
+            })
+        }
+    });
+
+    router.put('/roundsSubmit', function(req, res) {
+        console.log(JSON.stringify(req.body, null, 2));
+        var user = req.session.user;
+        if (!user) {
+            console.log('no session user');
+            return res.status(401).send();
+        } else {
+            models.users.find({
+                where: {
+                    email: user.email
+                }
+            }).then(function(foundUser) {
+                foundUser.handicap = req.body.handicap;
+                foundUser.save()
+                .then(function() {
+                    return res.status(200).send();
+                })
             })
         }
     });

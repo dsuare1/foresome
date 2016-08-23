@@ -53,6 +53,29 @@ $(document).ready(function() {
         });
     });
 
+    $('#handicap-submit').on('click', function(e) {
+        var submittedHandicap = $('#handicap').val();
+        submittedHandicap = parseFloat(submittedHandicap);
+        e.preventDefault();
+        $.ajax({
+            url: '/handicapSubmit',
+            type: 'PUT',
+            data: {
+                handicap: submittedHandicap.toFixed(1)
+            },
+            success: function(data) {
+                console.log('ajax put of entered handicap was performed');
+            }
+        })
+
+        $('#calculated-handicap').html(submittedHandicap.toFixed(1));
+
+        $('.calculated-handicap-message').slideDown('slow', function() {
+            return;
+        });
+
+    })
+
     $('#rounds-submit').on('click', function(e) {
         e.preventDefault();
         // gathers all the rounds input elements (can access value with '.value')
@@ -91,6 +114,13 @@ $(document).ready(function() {
                 console.log('ajax put of calculted handicap was performed');
             }
         })
+
+        $('#calculated-handicap').html(calculatedHandicap.toFixed(1));
+
+        $('.calculated-handicap-message').slideDown('slow', function() {
+            return;
+        });
+
     });
 
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/

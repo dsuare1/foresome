@@ -4,6 +4,7 @@ var exphbs = require('express-handlebars');
 var mysql = require('mysql');
 var session = require('express-session');
 var methodOverride = require('method-override');
+var cookieParser = require('cookie-parser');
 
 var app = express();
 
@@ -22,6 +23,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 // set up sessions
+app.use(cookieParser());
 app.use(session({ secret: 'asdfjkl1234', resave: false, saveUnitialized: true}));
 
 // set up Express to use method override

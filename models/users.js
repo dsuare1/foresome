@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     profile_pic: DataTypes.STRING,
     password: DataTypes.STRING,
     // adding to try to update handicap
-    handicap: DataTypes.INTEGER
+    handicap: DataTypes.DECIMAL(2,1)
   }, {
     classMethods: {
       associate: function(models) {

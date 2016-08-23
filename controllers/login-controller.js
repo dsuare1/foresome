@@ -11,6 +11,7 @@ module.exports = function(router, models) {
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
     router.post('/signup', upload.any(), function(req, res) {
+        console.log(req.cookies);
         console.log('profile pic path: ' + req.files[0].path);
         var signupEmail = req.body.signup_email;
         models.users.findOne({ where: { email: signupEmail } }).then(function(duplicateUser) {
@@ -42,8 +43,8 @@ module.exports = function(router, models) {
     router.post('/signin', function(req, res) {
         console.log('signin button hit');
         activeUser = req.body.signin_email;
-        console.log('sessionUser: ' + sessionUser);
-        models.users.findOne({ where: { email: sessionUser } }).then(function(loginUser) {
+        console.log('active user: ' + activeUser);
+        models.users.findOne({ where: { email: activeUser } }).then(function(loginUser) {
             if (loginUser !== null) {
                 req.session.user = loginUser;
                 bcrypt.compare(req.body.signin_password, loginUser.password, function(err, result) {
@@ -63,82 +64,23 @@ module.exports = function(router, models) {
     });
 
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
-    // routes for new user page
-    // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
-
-    router.get('/new_admin', function(req, res) {
-        var user = req.session.user;
-        if (!user) {
-            return res.status(401).send();
-        } else {
-            var hbsObj = {
-                first_name: user.first_name,
-                email: user.email
-            }
-            res.render('newAdmin', hbsObj);
-        }
-    });
-
-    router.put('/handicapSubmit', function(req, res) {
-        var user = req.session.user;
-        if (!user) {
-            console.log('no session user');
-            return res.status(401).send();
-        } else {
-            models.users.find({
-                where: {
-                    email: user.email
-                }
-            }).then(function(foundUser) {
-                foundUser.handicap = req.body.handicap;
-                foundUser.save()
-                .then(function() {
-                    return res.status(200).send();
-                });
-            })
-        }
-    });
-
-    router.put('/roundsSubmit', function(req, res) {
-        console.log(JSON.stringify(req.body, null, 2));
-        var user = req.session.user;
-        if (!user) {
-            console.log('no session user');
-            return res.status(401).send();
-        } else {
-            models.users.find({
-                where: {
-                    email: user.email
-                }
-            }).then(function(foundUser) {
-                foundUser.handicap = req.body.handicap;
-                foundUser.save()
-                .then(function() {
-                    return res.status(200).send();
-                })
-            })
-        }
-    });
-
-
-    // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
     // routes for existing user page
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
-    router.get('/admin', function(req, res) {
-        var user = req.session.user;
-        if (!user) {
-            return res.status(401).send();
-        } else {
-            models.users.findOne({ where: { email: user.email } }).then(function(sessionUser1) {
-                var hbsObj = {
-                    first_name: user.first_name,
-                    email: user.email
-                }
-                res.render('admin', hbsObj);
-            })
-        }
-    });
+    // router.get('/admin', function(req, res) {
+    //     var user = req.session.user;
+    //     if (!user) {
+    //         return res.status(401).send();
+    //     } else {
+    //         models.users.findOne({ where: { email: user.email } }).then(function(sessionUser1) {
+    //             var hbsObj = {
+    //                 first_name: user.first_name,
+    //                 email: user.email
+    //             }
+    //             res.render('admin', hbsObj);
+    //         })
+    //     }
+    // });
 
 
 };

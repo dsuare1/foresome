@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 var express = require('express');
 var exphbs = require('express-handlebars');
+var processImage = require('express-processimage');
 var mysql = require('mysql');
 var session = require('express-session');
 var methodOverride = require('method-override');
@@ -14,10 +15,11 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/vnd.api+json' }));
 
 // used to serve the static files (style.css, imgs, etc.)
+app.use(processImage('public'));
 app.use(express.static(process.cwd() + '/public'));
+app.use('/public', express.static('public'));
 
 // parse incoming responses into body
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
 	extended: false
 }));

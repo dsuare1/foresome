@@ -1,13 +1,32 @@
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container-fluid">
+		
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
+			<span class="sr-only">Toggle navigation</span>
+			</button>
+			<a class="navbar-brand" href="#">FORE!some</a>
+		</div>
+
+		<ul class="nav navbar-nav">
+        	<li class="dropdown">
+	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+	        	<ul class="dropdown-menu">
+	        		<form method="POST" action="/logout">
+						<button type="submit">Log out</button>
+					</form>
+	          	</ul>
+	        </li>
+	    </ul>
+	</div>
+</nav>
+
 <div style="background-color: #000;">
 	<h1>Welcome back to FORE!some</h1>
 
 	<p>{{this.first_name}}</p>
 	<p>{{this.email}}</p>
-	<img src="/{{this.profile_pic}}" class="profile_pic" alt="Profile Pic">
+	<img src="/{{this.profile_pic}}" class="profile_pic" height="150" width="150" alt="Profile Pic">
 
 	<h4>These are your best matches:</h4>
-
-	<form method="POST" action="/logout">
-		<button>Log out</button>
-	</form>
 </div>

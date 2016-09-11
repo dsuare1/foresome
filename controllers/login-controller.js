@@ -2,8 +2,6 @@ var multer = require('multer');
 var upload = multer({ dest: 'public/assets/uploads/' });
 var bcrypt = require('bcrypt');
 var saltRounds = 10;
-// var imgProc = require('./imgProcessor');
-var Jimp = require('jimp');
 
 module.exports = function(router, models) {
     console.log('Controller loaded --> Login controller (login-controller.js)');
@@ -13,13 +11,6 @@ module.exports = function(router, models) {
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
 
     router.post('/signup', upload.single('profile_pic'), function(req, res) {
-        // imgProc.convertImg(req.file).then(function(imgStr) {
-        //     res.json(imgStr);
-        // })
-        console.log(req.file);
-        Jimp.read(req.file).then(function(file) {
-            file.resize(100, 100)
-        })
         console.log('profile pic path: ' + req.file.path);
         var signupEmail = req.body.signup_email;
         models.users.findOne({ where: { email: signupEmail } }).then(function(duplicateUser) {

@@ -7,7 +7,7 @@ module.exports = function(router, models) {
         if (!user) {
             return res.status(401).send();
         } else {
-            models.users.findOne({ where: { email: user.email } }).then(function(sessionUser1) {
+            models.users.findOne({ where: { email: user.email } }).then(function(user) {
                 var hbsObj = {
                     first_name: user.first_name,
                     email: user.email,

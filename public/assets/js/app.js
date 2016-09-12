@@ -6,6 +6,8 @@ $(document).ready(function() {
     // initial click; yes or no for known handicap
     $('#handicap-yes').on('click', function() {
         $('.enter-handicap').fadeIn(1000).css('display', 'inline-block').removeClass('hidden');
+        $(this).fadeOut('slow');
+        $('#handicap-no').fadeOut('slow');
         $('html, body').animate({
             scrollTop: $('.enter-handicap').offset().top
         }, 'slow');
@@ -13,48 +15,44 @@ $(document).ready(function() {
 
     $('#handicap-no').on('click', function() {
         $('.enter-scores').fadeIn(1000).css('display', 'inline-block').removeClass('hidden');
+        $(this).fadeOut('slow');
+        $('#handicap-yes').fadeOut('slow');
         $('html, body').animate({
             scrollTop: $('.enter-scores').offset().top
         })
     });
 
     $('.go-back').on('click', function() {
-        $(this).closest('div').fadeOut('slow', function() {
+        $(this).parent().fadeOut('slow', function() {
             return;
         });
+        $('#handicap-yes').fadeIn('slow');
+        $('#handicap-no').fadeIn('slow');
     })
 
 
     // this click listener shows the second set of inputs for rounds 6 - 10
     $('#show-second-five').on('click', function(e) {
         e.preventDefault();
-        $('.second-five-rounds').slideDown('slow', function() {
-            return;
-        });
+        $('.second-five-rounds').fadeIn(1000).css('display', 'inline-block').removeClass('hidden');
     });
 
     // this click listener shows the third set of inputs for rounds 11 - 15
     $('#show-third-five').on('click', function(e) {
         e.preventDefault();
-        $('.third-five-rounds').slideDown('slow', function() {
-            return;
-        });
+        $('.third-five-rounds').fadeIn(1000).css('display', 'inline-block').removeClass('hidden');
     });
 
     // this click listener hides the second set of inputs for rounds 6 - 10
     $('#hide-second-five').on('click', function(e) {
         e.preventDefault();
-        $('.second-five-rounds').slideUp('slow', function() {
-            return;
-        });
+        $('.second-five-rounds').fadeOut(1000);
     });
 
     // this click listener hides the third set of inputs for rounds 11 - 15
     $('#hide-third-five').on('click', function(e) {
         e.preventDefault();
-        $('.third-five-rounds').slideUp('slow', function() {
-            return;
-        });
+        $('.third-five-rounds').fadeOut(1000);
     });
 
     $('#handicap-submit').on('click', function(e) {
@@ -74,9 +72,10 @@ $(document).ready(function() {
 
         $('#calculated-handicap').html(submittedHandicap.toFixed(1));
 
-        $('.calculated-handicap-message').slideDown('slow', function() {
-            return;
-        });
+        $('.calculated-handicap-message').fadeIn(1000).css('display', 'inline-block').removeClass('hidden');
+        $('html, body').animate({
+            scrollTop: $('.calculated-handicap-message').offset().top
+        }, 'slow');
 
     })
 
@@ -121,9 +120,10 @@ $(document).ready(function() {
 
         $('#calculated-handicap').html(calculatedHandicap.toFixed(1));
 
-        $('.calculated-handicap-message').slideDown('slow', function() {
-            return;
-        });
+        $('.calculated-handicap-message').fadeIn(1000).css('display', 'inline-block').removeClass('hidden');
+        $('html, body').animate({
+            scrollTop: $('.calculated-handicap-message').offset().top
+        }, 'slow');
 
     });
 

@@ -13,35 +13,35 @@
 			<form method="POST" enctype="multipart/form-data" action="/signup" class="signup-form">
 				<div class="form-group" id="first-name-input">
 					<label for="signup_first_name">First name:</label><br>
-					<input type="text" name="signup_first_name" placeholder="Fred">
+					<input type="text" name="signup_first_name" class="form-control" placeholder="Fred">
 				</div>
 
 				<div class="form-group">
 					<label for="signup_last_name">Last name:</label><br>
-					<input type="text" name="signup_last_name" placeholder="Couples">
+					<input type="text" name="signup_last_name" class="form-control" placeholder="Couples">
 				</div><br>
 					
 				<div class="form-group">
 					<label for="signup_email">Email:</label><br>
-					<input type="email" name="signup_email" placeholder="fredcouples@pga.com">
+					<input type="email" name="signup_email" class="form-control" placeholder="fredcouples@pga.com">
 				</div><br>
 
 				<div class="form-group">
 					<label for="signup_password">Password:</label><br>
-					<input type="password" name="signup_password">
+					<input type="password" name="signup_password" class="form-control">
 				</div><br>
 
 				<div class="form-group">
 					<label for="signup_password_confirm">Re-enter password:</label><br>
-					<input type="password" name="signup_password_confirm">
+					<input type="password" name="signup_password_confirm" class="form-control">
 				</div><br>
 
 				<div class="form-group">
 					<label for="profile_pic">Profile picture:</label>
-					<input type="file" name="profile_pic" id="pic-upload">
+					<input type="file" name="profile_pic" id="pic-upload" class="form-control">
 				</div><br>
 
-				<button class="btn btn-large" type="submit" id="signup_submit">Sign Up!</button>
+				<button class="btn btn-large index-button" type="submit" id="signup_submit">Sign Up!</button>
 			</form>
 		</div>
 
@@ -50,15 +50,15 @@
 			<form method="POST" action="/signin" class="signin-form">
 				<div class="form-group">
 					<label for="signin_email">Email address:</label><br>
-					<input type="email" name="signin_email" placeholder="davidduval@pga.com"><br>
+					<input type="email" name="signin_email" class="form-control" placeholder="davidduval@pga.com"><br>
 				</div><br>
 
 				<div class="form-group">
 					<label for="signin_password">Password:</label><br>
-					<input type="password" name="signin_password">
+					<input type="password" name="signin_password" class="form-control">
 				</div><br>
 
-				<button class="btn btn-large" type="submit" id="signin_submit">Log In!</button>
+				<button class="btn btn-large index-button" type="submit" id="signin_submit">Log In!</button>
 
 			</form>
 		</div>

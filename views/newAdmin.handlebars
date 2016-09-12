@@ -1,108 +1,135 @@
-<div style="background-color: #000;">
-	<h1>Welcome to FORE!some</h1>
+<nav class="navbar navbar-default navbar-static-top">
+	<div class="container-fluid">
+		
+		<div class="navbar-header">
+			<h2 class="navbar-logo"><span id="fore2">FORE!</span>some</h2>
+		</div>
 
-	<hr>
-	<p>{{this.first_name}}</p>
-	<p>{{this.email}}</p>
-
-	<hr>
-	<h4>Do you know your handicap?</h4>
-	<button id="handicap-yes">Yes</button>
-	<button id="handicap-no">No</button>
-
-	<hr>
-	<div class="hidden enter-handicap">
-		<p>Ok great!  Enter it below:</p>
-		<form method="POST" action="/handicapSubmit?_method=PUT">
-			<label for="handicap">Handicap</label>
-			<input type="number" id="handicap" name="handicap"><br>
-			<button type="submit" id="handicap-submit">Submit</button>
+		<form method="POST" action="/logout" id="logout-form">
+			<button type="submit" id="logout_submit">Log out</button>
 		</form>
-		<button class="go-back">Go back</button>
+	</div>
+</nav>
+
+<div id="content-wrapper">
+	{{!-- <img src="assets/img/course_pic_3.jpg" id="bg" alt="Golf Course"> --}}
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 text-center" id="welcome-back">
+			<div class="text-center">
+				<h1 id="welcome-back-message">Welcome, {{this.first_name}}!</h1>
+			</div>
+			<div class="user-info" id="email-and-pic">
+				<img src="/{{this.profile_pic}}" class="profile_pic" height="100" width="125" alt="Profile Pic">
+				<p id="email">{{this.email}}</p>
+			</div>
+			<div class="user-info" id="handicap-yes-now">
+				<h3>Do you know your handicap?</h3>
+				<button id="handicap-yes">Yes</button>
+				<button id="handicap-no">No</button>
+			</div>
+		</div>
 	</div>
 
-	<hr>
-	<div class="hidden enter-scores">
-		<p>No problem!  Enter at least your last 5 rounds, and up to your last 15.  <br>(the more you enter, the more accurately we can calculate your handicap)</p>
-		<hr>
-		<form method="POST" action="/roundsSubmit?_method=PUT">
-			<div class="first-five-rounds">
-				<label for="round1">Round 1:</label>
-				<input type="number" class="round" id="round1" name="round1">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 hidden enter-handicap text-center">
+					<h3>Ok great!  Enter it below:</h3>
+				<form method="POST" action="/handicapSubmit?_method=PUT">
+					<label for="handicap" class="handicap-label">Handicap</label><br>
+					<input type="number" id="handicap" name="handicap"><br>
+					<button type="submit" id="handicap-submit">Submit</button>
+				</form>
+				<button class="go-back">Go back</button>
+			</div>
+		</div>
 
-				<label for="round2">Round 2:</label>
-				<input type="number" class="round" id="round2" name="round2">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2 hidden enter-scores">
+				<div class="text-center">
+					<h4 id="enter-scores-message">No problem!  Enter at least your last 5 rounds, and up to your last 15.</h4><p id="aside">(the more you enter, the more accurately we can calculate your handicap)</p>
+				</div>
+				<form method="POST" action="/roundsSubmit?_method=PUT">
+					<div class="first-five-rounds">
+						<label for="round1">Round 1:</label>
+						<input type="number" class="round" id="round1" name="round1">
 
-				<label for="round3">Round 3:</label>
-				<input type="number" class="round" id="round3" name="round3">
+						<label for="round2">Round 2:</label>
+						<input type="number" class="round" id="round2" name="round2">
 
-				<label for="round4">Round 4:</label>
-				<input type="number" class="round" id="round4" name="round4">
+						<label for="round3">Round 3:</label>
+						<input type="number" class="round" id="round3" name="round3">
 
-				<label for="round5">Round 5:</label>
-				<input type="number" class="round" id="round5" name="round5">
-				
-				<a href="#" id="show-second-five">
-					<p>Show five more...</p>
-				</a>
+						<label for="round4">Round 4:</label>
+						<input type="number" class="round" id="round4" name="round4">
 
+						<label for="round5">Round 5:</label>
+						<input type="number" class="round" id="round5" name="round5">
+						
+						<a href="#" id="show-second-five">
+							<p>Show five more...</p>
+						</a>
+					</div>
+
+					<div class="hidden second-five-rounds">
+						<label for="round6">Round 6:</label>
+						<input type="number" class="round" id="round6" name="round6">
+
+						<label for="round7">Round 7:</label>
+						<input type="number" class="round" id="round7" name="round7">
+
+						<label for="round8">Round 8:</label>
+						<input type="number" class="round" id="round8" name="round8">
+
+						<label for="round9">Round 9:</label>
+						<input type="number" class="round" id="round9" name="round9">
+
+						<label for="round10">Round 10:</label>
+						<input type="number" class="round" id="round10" name="round10">
+
+						<a href="#" id="show-third-five">
+							<p>Show five more...</p>
+						</a>
+
+						<a href="#" id="hide-second-five">
+							<p>Hide</p>
+						</a>
+					</div>
+
+					<div class="hidden third-five-rounds">
+						<label for="round11">Round 11:</label>
+						<input type="number" class="round" id="round11" name="round11">
+
+						<label for="round12">Round 12:</label>
+						<input type="number" class="round" id="round12" name="round12">
+
+						<label for="round13">Round 13:</label>
+						<input type="number" class="round" id="round13" name="round13">
+
+						<label for="round14">Round 14:</label>
+						<input type="number" class="round" id="round14" name="round14">
+
+						<label for="round15">Round 15:</label>
+						<input type="number" class="round" id="round15" name="round15">
+
+						<a href="#" id="hide-third-five">
+							<p>Hide</p>
+						</a>
+					</div>
+					<div class="text-center">
+						<button type="submit" id="rounds-submit">Calculate my handicap</button>
+					</div>
+				</form>
+				<div class="text-center">
+					<button class="go-back">Go back</button>
+				</div>
 			</div>
 
-			<div class="hidden second-five-rounds">
-				<label for="round6">Round 6:</label>
-				<input type="number" class="round" id="round6" name="round6">
-
-				<label for="round7">Round 7:</label>
-				<input type="number" class="round" id="round7" name="round7">
-
-				<label for="round8">Round 8:</label>
-				<input type="number" class="round" id="round8" name="round8">
-
-				<label for="round9">Round 9:</label>
-				<input type="number" class="round" id="round9" name="round9">
-
-				<label for="round10">Round 10:</label>
-				<input type="number" class="round" id="round10" name="round10">
-
-				<a href="#" id="show-third-five">
-					<p>Show five more...</p>
-				</a>
-
-				<a href="#" id="hide-second-five">
-					<p>Hide</p>
-				</a>
+			<div class="hidden calculated-handicap-message">
+				<h4>Great!  So we've got your handicap at <span id="calculated-handicap"></span>.  Click on the button below to see your best matches!</h4>
+				<form method="GET" action="/admin">
+					<button id="redirect-to-admin">Show me my matches!</button>
+				</form>
 			</div>
-
-			<div class="hidden third-five-rounds">
-				<label for="round11">Round 11:</label>
-				<input type="number" class="round" id="round11" name="round11">
-
-				<label for="round12">Round 12:</label>
-				<input type="number" class="round" id="round12" name="round12">
-
-				<label for="round13">Round 13:</label>
-				<input type="number" class="round" id="round13" name="round13">
-
-				<label for="round14">Round 14:</label>
-				<input type="number" class="round" id="round14" name="round14">
-
-				<label for="round15">Round 15:</label>
-				<input type="number" class="round" id="round15" name="round15">
-
-				<a href="#" id="hide-third-five">
-					<p>Hide</p>
-				</a>
-			</div>
-			<button type="submit" id="rounds-submit">Calculate my handicap</button>
-		</form>
-		<button class="go-back">Go back</button>
-	</div>
-
-	<hr>
-	<div class="hidden calculated-handicap-message">
-		<h4>Great!  So we've got your handicap at <span id="calculated-handicap"></span>.  Click on the button below to see your best matches!</h4>
-		<form method="GET" action="/admin">
-			<button id="redirect-to-admin">Show me my matches!</button>
-		</form>
+		</div>
 	</div>
 </div>

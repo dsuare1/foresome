@@ -8,7 +8,8 @@ module.exports = function(router, models) {
         } else {
             var hbsObj = {
                 first_name: user.first_name,
-                email: user.email
+                email: user.email,
+                profile_pic: user.profile_pic
             }
             res.render('newAdmin', hbsObj);
         }

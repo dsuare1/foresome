@@ -5,19 +5,23 @@ $(document).ready(function() {
 
     // initial click; yes or no for known handicap
     $('#handicap-yes').on('click', function() {
-        $('.enter-handicap').slideDown('slow', function() {
-            return;
-        });
+        $('.enter-handicap').fadeIn(1000).css('display', 'inline-block').removeClass('hidden');
+        $('html, body').animate({
+            scrollTop: $('.enter-handicap').offset().top
+        }, 'slow');
     });
 
     $('#handicap-no').on('click', function() {
-        $('.enter-scores').slideDown('slow', function() {
-            return;
-        });
+        $('.enter-scores').fadeIn(1000).css('display', 'inline-block').removeClass('hidden');
+        $('html, body').animate({
+            scrollTop: $('.enter-scores').offset().top
+        })
     });
 
     $('.go-back').on('click', function() {
-        $(this).closest('div').slideUp();
+        $(this).closest('div').fadeOut('slow', function() {
+            return;
+        });
     })
 
 

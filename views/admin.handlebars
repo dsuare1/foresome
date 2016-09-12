@@ -2,31 +2,30 @@
 	<div class="container-fluid">
 		
 		<div class="navbar-header">
-			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false">
-			<span class="sr-only">Toggle navigation</span>
-			</button>
-			<a class="navbar-brand" href="#">FORE!some</a>
+			<h2 class="navbar-logo"><span id="fore2">FORE!</span>some</h2>
 		</div>
 
-		<ul class="nav navbar-nav">
-        	<li class="dropdown">
-	        	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-	        	<ul class="dropdown-menu">
-	        		<form method="POST" action="/logout">
-						<button type="submit">Log out</button>
-					</form>
-	          	</ul>
-	        </li>
-	    </ul>
+		<form method="POST" action="/logout" id="logout-form">
+			<button type="submit" id="logout_submit">Log out</button>
+		</form>
 	</div>
 </nav>
 
-<div style="background-color: #000;">
-	<h1>Welcome back to FORE!some</h1>
-
-	<p>{{this.first_name}}</p>
-	<p>{{this.email}}</p>
-	<img src="/{{this.profile_pic}}" class="profile_pic" height="150" width="150" alt="Profile Pic">
-
-	<h4>These are your best matches:</h4>
+<div id="content-wrapper">
+	{{!-- <img src="assets/img/course_pic_3.jpg" id="bg" alt="Golf Course"> --}}
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3" id="welcome-back">
+			<div class="text-center">
+				<h1 id="welcome-back-message">Welcome back, {{this.first_name}}!</h1>
+			</div>
+			<div class="user-info" id="email-and-pic">
+				<img src="/{{this.profile_pic}}" class="profile_pic" height="100" width="125" alt="Profile Pic">
+				<p id="email">{{this.email}}</p>
+			</div>
+			<div class="user-info" id="handicap-message">
+				<p>It looks like right now we have your handicap at &nbsp;&nbsp;<span id="handicap">{{this.handicap}}</span>.</p>
+				<button type="submit" id="update-handicap">Update Handicap</button>
+			</div>
+		</div>
+	</div>
 </div>

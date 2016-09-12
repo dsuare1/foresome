@@ -11,6 +11,7 @@ module.exports = function(router, models) {
                 var hbsObj = {
                     first_name: user.first_name,
                     email: user.email,
+                    handicap: user.handicap,
                     profile_pic: user.profile_pic
                 }
                 res.render('admin', hbsObj);

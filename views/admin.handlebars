@@ -1,32 +1,41 @@
-<nav class="navbar navbar-default navbar-static-top">
-	<div class="container-fluid">
-		
-		<div class="navbar-header">
-			<h2 class="navbar-logo"><span id="fore2">FORE!</span>some</h2>
+<div class="admin-page-wrapper">
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			
+			<div class="navbar-header">
+				<h2 class="navbar-logo"><span id="fore2">FORE!</span>some</h2>
+			</div>
+
+			<form method="POST" action="/logout" id="logout-form">
+				<button type="submit" id="logout_submit">Log out</button>
+			</form>
+		</div>
+	</nav>
+
+	<div id="content-wrapper">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3" id="welcome-back">
+				<div class="text-center">
+					<h1 id="welcome-back-message">Welcome back, {{this.first_name}}!</h1>
+				</div>
+				<div class="user-info" id="email-and-pic">
+					<img src="/{{this.profile_pic}}" class="profile_pic" height="100" width="125" alt="Profile Pic">
+					<p id="email">{{this.email}}</p>
+				</div>
+				<div class="user-info" id="handicap-message">
+					<p>It looks like right now <br>we have your handicap at:<br><br><span id="handicap">{{this.handicap}}</span></p><br>
+				</div>
+				<div class="update-handicap-button-container">
+					<button type="submit" id="update-handicap">Update Handicap</button>
+				</div>
+			</div>
 		</div>
 
-		<form method="POST" action="/logout" id="logout-form">
-			<button type="submit" id="logout_submit">Log out</button>
-		</form>
-	</div>
-</nav>
-
-<div id="content-wrapper">
-	{{!-- <img src="assets/img/course_pic_3.jpg" id="bg" alt="Golf Course"> --}}
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3" id="welcome-back">
-			<div class="text-center">
-				<h1 id="welcome-back-message">Welcome back, {{this.first_name}}!</h1>
+		<div class="row">
+			<div class="col-md-6" id="best-matches">
 			</div>
-			<div class="user-info" id="email-and-pic">
-				<img src="/{{this.profile_pic}}" class="profile_pic" height="100" width="125" alt="Profile Pic">
-				<p id="email">{{this.email}}</p>
-			</div>
-			<div class="user-info" id="handicap-message">
-				<p>It looks like right now <br>we have your handicap at:<br><br><span id="handicap">{{this.handicap}}</span></p><br>
-			</div>
-			<div class="update-handicap-button-container">
-				<button type="submit" id="update-handicap">Update Handicap</button>
+			</div class="col-md-6" id="map-area">
+				<iframe class="visible map" id="init-map" width="458" height="450" frameborder="0" src="https://www.google.com/maps/embed/v1/view?zoom=10&amp;center=30.2672%2C-97.7431&amp;key=AIzaSyBYNfzV85uLn4SDjRB65-rp1nTAtWwc-Jo"></iframe>
 			</div>
 		</div>
 	</div>

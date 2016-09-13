@@ -26,6 +26,7 @@
     "express-handlebars": "^3.0.0",
     "express-session": "^1.14.0",
     "file-type": "^3.8.0",
+    "geolocation": "^0.2.0",
     "jimp": "^0.2.27",
     "lodash": "^4.15.0",
     "method-override": "^2.3.6",

@@ -14,7 +14,6 @@ newAdminController(router, models);
 // set up router to listen for root route ('/')
 router.get('/', function(req, res) {
 	res.render('index');
-	// console.log(req.session);
 });
 
 console.log('Controller loaded --> Centralized controller (foresome-controller.js)');

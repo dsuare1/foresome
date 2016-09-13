@@ -148,4 +148,22 @@ $(document).ready(function() {
     })
 
     // /-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/-/
+    // geolocation
+    var latitude,
+        longitude;
+    function locateUser() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        } else {
+            console.log('geolocation not possible');
+        }
+    }
+
+    function showPosition(position) {
+        console.log("Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude);
+        $('#map-area').html("<iframe class='courses-map' width='458' height='440' frameborder='0' src='https://www.google.com/maps/embed/v1/search?q=golf+course&amp;center=" + position.coords.latitude + "," + position.coords.longitude + "&amp;zoom=10&amp;key=AIzaSyDchdsjpvalXui_QTAFtm9Hb1Ka67X5s1k'></iframe>");
+    }
+
+    locateUser();
+
 });

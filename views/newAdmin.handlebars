@@ -1,127 +1,131 @@
-<nav class="navbar navbar-default navbar-static-top">
-	<div class="container-fluid">
-		
-		<div class="navbar-header">
-			<h2 class="navbar-logo"><span id="fore2">FORE!</span>some</h2>
+<div class="admin-page-wrapper">
+	<nav class="navbar navbar-default navbar-static-top">
+		<div class="container-fluid">
+			
+			<div class="navbar-header">
+				<h2 class="navbar-logo"><span id="fore2">FORE!</span>some</h2>
+			</div>
+
+			<form method="POST" action="/logout" id="logout-form">
+				<button type="submit" id="logout_submit">Log out</button>
+			</form>
 		</div>
+	</nav>
 
-		<form method="POST" action="/logout" id="logout-form">
-			<button type="submit" id="logout_submit">Log out</button>
-		</form>
-	</div>
-</nav>
-
-<div id="content-wrapper">
-	{{!-- <img src="assets/img/course_pic_3.jpg" id="bg" alt="Golf Course"> --}}
-	<div class="row">
-		<div class="col-md-6 col-md-offset-3 text-center" id="welcome-back">
-			<div class="text-center">
-				<h1 id="welcome-back-message">Welcome, {{this.first_name}}!</h1>
-			</div>
-			<div class="user-info" id="email-and-pic">
-				<img src="/{{this.profile_pic}}" class="profile_pic" height="100" width="125" alt="Profile Pic">
-				<p id="email">{{this.email}}</p>
-			</div>
-			<div class="user-info" id="handicap-yes-now">
-				<h3>Do you know your handicap?</h3>
-				<button id="handicap-yes" class="newAdmin-button">Yes</button>
-				<button id="handicap-no" class="newAdmin-button">No</button>
-			</div>
-		</div>
-	</div>
-
-	<div class="container">
+	<div id="content-wrapper">
+		{{!-- <img src="assets/img/course_pic_3.jpg" id="bg" alt="Golf Course"> --}}
 		<div class="row">
-			<div class="col-md-8 col-md-offset-2 hidden enter-handicap text-center">
-					<h3>Ok great!  Enter it below:</h3>
-				<form method="POST" action="/handicapSubmit?_method=PUT">
-					<label for="handicap" class="handicap-label">Handicap</label><br>
-					<input type="number" id="handicap" name="handicap"><br>
-					<button type="submit" id="handicap-submit" class="newAdmin-button">Submit</button>
-				</form>
-				<button class="newAdmin-button go-back">Go back</button>
-			</div>
-		</div>
-
-		<div class="row">
-			<div class="col-md-12 hidden enter-scores">
+			<div class="col-md-6 col-md-offset-3 text-center" id="welcome">
 				<div class="text-center">
-					<h4 id="enter-scores-message">No problem!  Enter at least your last 5 rounds, and up to your last 15.</h4><p id="aside">(the more you enter, the more accurately we can calculate your handicap)</p>
+					<h1 id="welcome-back-message">Welcome, {{this.first_name}}!</h1>
 				</div>
-				<form method="POST" action="/roundsSubmit?_method=PUT" id="rounds-submit-form">
-					<div class="first-five-rounds form-group">
-						<label for="round1" class="round-label">Round 1:</label>
-						<input type="number" class="round form-control" id="round1" name="round1">
-
-						<label for="round2" class="round-label">Round 2:</label>
-						<input type="number" class="round form-control" id="round2" name="round2">
-
-						<label for="round3" class="round-label">Round 3:</label>
-						<input type="number" class="round form-control" id="round3" name="round3">
-
-						<label for="round4" class="round-label">Round 4:</label>
-						<input type="number" class="round form-control" id="round4" name="round4">
-
-						<label for="round5" class="round-label">Round 5:</label>
-						<input type="number" class="round form-control" id="round5" name="round5">
-						
-						<button class="btn btn-large show-more-rounds" id="show-second-five">Show five more...</button>
-					</div>
-
-					<div class="hidden second-five-rounds form-group">
-						<label for="round6" class="round-label">Round 6:</label>
-						<input type="number" class="round form-control" id="round6" name="round6">
-
-						<label for="round7" class="round-label">Round 7:</label>
-						<input type="number" class="round form-control" id="round7" name="round7">
-
-						<label for="round8" class="round-label">Round 8:</label>
-						<input type="number" class="round form-control" id="round8" name="round8">
-
-						<label for="round9" class="round-label">Round 9:</label>
-						<input type="number" class="round form-control" id="round9" name="round9">
-
-						<label for="round10" class="round-label double-digit-round-label">Round 10:</label>
-						<input type="number" class="round form-control" id="round10" name="round10">
-
-						<button class="btn btn-large show-more-rounds" id="show-third-five">Show five more...</button>
-
-						<button class="btn btn-large hide-rounds" id="hide-second-five">Hide</button>
-					</div>
-
-					<div class="hidden third-five-rounds form-group">
-						<label for="round11" class="round-label double-digit-round-label">Round 11:</label>
-						<input type="number" class="round form-control" id="round11" name="round11">
-
-						<label for="round12" class="round-label double-digit-round-label">Round 12:</label>
-						<input type="number" class="round form-control" id="round12" name="round12">
-
-						<label for="round13" class="round-label double-digit-round-label">Round 13:</label>
-						<input type="number" class="round form-control" id="round13" name="round13">
-
-						<label for="round14" class="round-label double-digit-round-label">Round 14:</label>
-						<input type="number" class="round form-control" id="round14" name="round14">
-
-						<label for="round15" class="round-label double-digit-round-label">Round 15:</label>
-						<input type="number" class="round form-control" id="round15" name="round15">
-
-						<button class="btn btn-large hide-rounds" id="hide-third-five">Hide</button>
-					</div>
-					<div class="text-center">
-						<button type="submit" id="rounds-submit" class="newAdmin-button">Calculate my handicap</button>
-					</div>
-				</form>
-				<button class="newAdmin-button go-back" id="rounds-go-back">Go back</button>
+				<div class="user-info" id="email-and-pic">
+					<img src="/{{this.profile_pic}}" class="profile_pic" height="100" width="125" alt="Profile Pic">
+					<p id="email">{{this.email}}</p>
+				</div>
+				<div class="user-info" id="handicap-yes-now">
+					<h3>Do you know your handicap?</h3>
+					<button id="handicap-yes" class="newAdmin-button">Yes</button>
+					<button id="handicap-no" class="newAdmin-button">No</button>
+				</div>
 			</div>
 		</div>
 
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2 hidden calculated-handicap-message">
-				<div class="text-center">
-					<h4>Great!  So we've got your handicap at:<br><br><span id="calculated-handicap"></span>.<br><br>Click on the button below to see your best matches!</h4>
-					<form method="GET" action="/admin">
-						<button class="btn btn-large newAdmin-button" id="redirect-to-admin">Show me my matches!</button>
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 hidden enter-handicap text-center">
+						<h3>Ok great!  Enter it below:</h3>
+					<form method="POST" action="/handicapSubmit?_method=PUT">
+						<label for="handicap" class="handicap-label">Handicap</label><br>
+						<input type="number" id="handicap" name="handicap"><br>
+						<button type="submit" id="handicap-submit" class="newAdmin-button">Submit</button>
 					</form>
+					<button class="newAdmin-button go-back">Go back</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12 hidden enter-scores">
+					<div class="text-center">
+						<h4 id="enter-scores-message">No problem!  Enter at least your last 5 rounds, and up to your last 15.</h4><p id="aside">(the more you enter, the more accurately we can calculate your handicap)</p>
+					</div>
+					<form method="POST" action="/roundsSubmit?_method=PUT" id="rounds-submit-form">
+						<div class="first-five-rounds form-group">
+							<label for="round1" class="round-label">Round 1:</label>
+							<input type="number" class="round form-control" id="round1" name="round1">
+
+							<label for="round2" class="round-label">Round 2:</label>
+							<input type="number" class="round form-control" id="round2" name="round2">
+
+							<label for="round3" class="round-label">Round 3:</label>
+							<input type="number" class="round form-control" id="round3" name="round3">
+
+							<label for="round4" class="round-label">Round 4:</label>
+							<input type="number" class="round form-control" id="round4" name="round4">
+
+							<label for="round5" class="round-label">Round 5:</label>
+							<input type="number" class="round form-control" id="round5" name="round5">
+							
+							<button class="btn btn-large show-more-rounds" id="show-second-five">Show five more...</button>
+						</div>
+
+						<div class="hidden second-five-rounds form-group">
+							<label for="round6" class="round-label">Round 6:</label>
+							<input type="number" class="round form-control" id="round6" name="round6">
+
+							<label for="round7" class="round-label">Round 7:</label>
+							<input type="number" class="round form-control" id="round7" name="round7">
+
+							<label for="round8" class="round-label">Round 8:</label>
+							<input type="number" class="round form-control" id="round8" name="round8">
+
+							<label for="round9" class="round-label">Round 9:</label>
+							<input type="number" class="round form-control" id="round9" name="round9">
+
+							<label for="round10" class="round-label double-digit-round-label">Round 10:</label>
+							<input type="number" class="round form-control" id="round10" name="round10">
+
+							<button class="btn btn-large show-more-rounds" id="show-third-five">Show five more...</button>
+
+							<button class="btn btn-large hide-rounds" id="hide-second-five">Hide</button>
+						</div>
+
+						<div class="hidden third-five-rounds form-group">
+							<label for="round11" class="round-label double-digit-round-label">Round 11:</label>
+							<input type="number" class="round form-control" id="round11" name="round11">
+
+							<label for="round12" class="round-label double-digit-round-label">Round 12:</label>
+							<input type="number" class="round form-control" id="round12" name="round12">
+
+							<label for="round13" class="round-label double-digit-round-label">Round 13:</label>
+							<input type="number" class="round form-control" id="round13" name="round13">
+
+							<label for="round14" class="round-label double-digit-round-label">Round 14:</label>
+							<input type="number" class="round form-control" id="round14" name="round14">
+
+							<label for="round15" class="round-label double-digit-round-label">Round 15:</label>
+							<input type="number" class="round form-control" id="round15" name="round15">
+
+							<button class="btn btn-large hide-rounds" id="hide-third-five">Hide</button>
+						</div>
+						<div class="text-center">
+							<button type="submit" id="rounds-submit" class="newAdmin-button">Calculate my handicap</button>
+						</div>
+					</form>
+					<button class="newAdmin-button go-back" id="rounds-go-back">Go back</button>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-8 col-md-offset-2 hidden calculated-handicap-message">
+					<div class="text-center">
+						<h4>Great; thanks {{this.first_name}}!  So we've got your handicap at:<br><br><span id="calculated-handicap"></span><br><br>Click on the button below to see your best matches!</h4>
+						<form method="GET" action="/admin">
+							<button class="btn btn-large newAdmin-button" id="redirect-to-admin">Show me my matches!</button>
+						</form>
+						<p>Made a mistake?  No problem!</p>
+						<button class="btn btn-large newAdmin-button" id="start-over">Start over</button>
+					</div>
 				</div>
 			</div>
 		</div>
